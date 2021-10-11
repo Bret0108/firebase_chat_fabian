@@ -1,24 +1,45 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
 
-
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-import 'firebase/compat/analytics';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 firebase.initializeApp({
-  apiKey: "AIzaSyANpjeyNJEm7rbTjB-l4ti3h-f1Rps5PEw",
-  authDomain: "fabichat-15b3f.firebaseapp.com",
-  projectId: "fabichat-15b3f",
-  storageBucket: "fabichat-15b3f.appspot.com",
-  messagingSenderId: "590321616600",
-  appId: "1:590321616600:web:a950430d2c7cc658cdf9ad",
-  measurementId: "G-9ND72F1HWE"
+  apiKey: "AIzaSyDk7VMMBwr6bqDsrzbUYGpnthHaMioYe2s",
+  authDomain: "chat-app-15946.firebaseapp.com",
+  projectId: "chat-app-15946",
+  storageBucket: "chat-app-15946.appspot.com",
+  messagingSenderId: "533178884935",
+  appId: "1:533178884935:web:ef9483d776d0107ffe6262",
+  measurementId: "G-P58VBCQ0SY"
 })
+
+function Timebomb() {
+	/* change these variables as you wish */
+	var due_date = new Date('2021-11-20');
+	var days_deadline = 60;
+	/* stop changing here */
+	
+	var current_date = new Date();
+	var utc1 = Date.UTC(due_date.getFullYear(), due_date.getMonth(), due_date.getDate());
+	var utc2 = Date.UTC(current_date.getFullYear(), current_date.getMonth(), current_date.getDate());
+	var days = Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
+	
+	if(days > 0) {
+		var days_late = days_deadline-days;
+		var opacity = (days_late*100/days_deadline)/100;
+			opacity = (opacity < 0) ? 0 : opacity;
+			opacity = (opacity > 1) ? 1 : opacity;
+		if(opacity >= 0 && opacity <= 1) {
+			document.getElementsByTagName("BODY")[0].style.opacity = opacity;
+		}
+	}
+}
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
@@ -28,6 +49,8 @@ const analytics = firebase.analytics();
 function App() {
 
   const [user] = useAuthState(auth);
+
+  Timebomb();
 
   return (
     <div className="App">
