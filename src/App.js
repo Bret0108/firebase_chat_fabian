@@ -1,23 +1,23 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
 
-
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-import 'firebase/compat/analytics';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
+import PropTypes from 'prop-types';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 firebase.initializeApp({
-  apiKey: "AIzaSyANpjeyNJEm7rbTjB-l4ti3h-f1Rps5PEw",
-  authDomain: "fabichat-15b3f.firebaseapp.com",
-  projectId: "fabichat-15b3f",
-  storageBucket: "fabichat-15b3f.appspot.com",
-  messagingSenderId: "590321616600",
-  appId: "1:590321616600:web:a950430d2c7cc658cdf9ad",
-  measurementId: "G-9ND72F1HWE"
+  apiKey: "AIzaSyDk7VMMBwr6bqDsrzbUYGpnthHaMioYe2s",
+  authDomain: "chat-app-15946.firebaseapp.com",
+  projectId: "chat-app-15946",
+  storageBucket: "chat-app-15946.appspot.com",
+  messagingSenderId: "533178884935",
+  appId: "1:533178884935:web:ef9483d776d0107ffe6262",
+  measurementId: "G-P58VBCQ0SY"
 })
 
 const auth = firebase.auth();
@@ -112,7 +112,6 @@ function ChatRoom() {
   </>)
 }
 
-
 function ChatMessage(props) {
   const { text, uid, photoURL } = props.message;
 
@@ -126,5 +125,8 @@ function ChatMessage(props) {
   </>)
 }
 
+ChatMessage.propTypes = {
+  message: PropTypes.any,
+};
 
 export default App;
