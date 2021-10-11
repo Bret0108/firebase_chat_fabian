@@ -1,24 +1,16 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
+import configData from "./firebase-config.json";
 
-
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-import 'firebase/compat/analytics';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-firebase.initializeApp({
-  apiKey: "AIzaSyANpjeyNJEm7rbTjB-l4ti3h-f1Rps5PEw",
-  authDomain: "fabichat-15b3f.firebaseapp.com",
-  projectId: "fabichat-15b3f",
-  storageBucket: "fabichat-15b3f.appspot.com",
-  messagingSenderId: "590321616600",
-  appId: "1:590321616600:web:a950430d2c7cc658cdf9ad",
-  measurementId: "G-9ND72F1HWE"
-})
+firebase.initializeApp(configData);
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
